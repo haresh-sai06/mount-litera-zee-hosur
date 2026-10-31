@@ -61,7 +61,7 @@ function Nav() {
   return (<header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${solid ? "bg-paper/80 backdrop-blur-md border-b border-line" : ""}`}>
     <motion.div style={{ scaleX: w }} className="absolute bottom-0 left-0 right-0 h-[2px] bg-peak origin-left" />
     <div className="wrap flex h-16 md:h-20 items-center justify-between">
-      <a href="#top" className="flex items-center gap-2.5"><PeakMark className="w-9" />
+      <a href="#top" className="flex items-center gap-2.5"><img src="/images/logo-mlzs.png" alt="Mount Litera Zee School" className="w-10 h-10 md:w-11 md:h-11 object-contain" />
         <span className="leading-none"><span className="block font-display font-extrabold tracking-tight">Mount Litera Zee</span>
           <span className="block text-[11px] font-bold uppercase tracking-[.16em] text-inksoft">School · Hosur</span></span></a>
       <nav className="hidden lg:flex items-center gap-7 text-[15px] font-semibold">
@@ -332,7 +332,7 @@ function Footer() {
     <div className="wrap pt-16 pb-12 md:pt-20 md:pb-16 grid grid-cols-2 md:grid-cols-12 gap-x-8 gap-y-12">
       <div className="col-span-2 md:col-span-4">
         {/* Logo slot: SVG peak until the real logo is supplied */}
-        <div className="flex items-center gap-3"><svg viewBox="0 0 48 40" className="w-10 shrink-0"><path d="M2 38 L18 10 L26 22 L32 14 L46 38 Z" fill="#FBF7F0" /><circle cx="38" cy="8" r="5" fill="#FF6B2C" /></svg>
+        <div className="flex items-center gap-3"><img src="/images/logo-mlzs-badge.png" alt="Mount Litera Zee School" className="w-11 h-11 shrink-0 object-contain" />
           <span className="font-display text-xl font-extrabold leading-tight">Mount Litera Zee School<br />Hosur</span></div>
         <p className="mt-5 text-paper/70 max-w-xs leading-relaxed">Nursery to Class 5. Where little minds grow big.</p>
         <p className="mt-5 text-sm text-paper/50 max-w-xs leading-relaxed">A campus of the <a href="https://www.mountlitera.com" target="_blank" rel="noopener" className="underline decoration-paper/30 underline-offset-4 hover:text-paper">Mount Litera Zee School</a> network by Zee Learn.</p></div>
