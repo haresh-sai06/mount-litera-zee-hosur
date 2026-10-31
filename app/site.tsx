@@ -27,7 +27,9 @@ const clip: Record<Shape, string> = {
   peak: "polygon(50% 0, 100% 100%, 0 100%)", circle: "circle(50% at 50% 50%)",
   pill: "inset(0 round 999px)", arch: "inset(0 round 999px 999px 28px 28px)",
 };
-function Frame({ shape, label, className = "", tint = "" }: { shape: Shape; label: string; className?: string; tint?: string }) {
+function Frame({ shape, label, className = "", tint = "", src, pos = "center" }: { shape: Shape; label: string; className?: string; tint?: string; src?: string; pos?: string }) {
+  if (src) return (<div className={`relative ${className}`} style={{ clipPath: clip[shape] }}>
+    <img src={src} alt={label} loading="lazy" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition: pos }} /></div>);
   return (<div className={`relative ${className}`} style={{ clipPath: clip[shape] }}>
     <div className={`absolute inset-0 ph ${tint}`} />
     <div className={`absolute inset-0 grid place-items-center text-center px-6 ${shape === "peak" ? "pt-[38%]" : ""}`}>
@@ -97,11 +99,11 @@ function Hero() {
       </div>
       <div className="col-span-12 lg:col-span-5 relative h-[420px] sm:h-[500px]">
         <motion.div initial={{ opacity: 0, scale: .8, rotate: -6 }} animate={{ opacity: 1, scale: 1, rotate: -3 }} transition={{ ...spring, delay: .2 }}
-          className="absolute left-0 top-6 w-[62%] aspect-[1/.9] drop-shadow-xl"><Frame shape="peak" label="Campus front" className="w-full h-full" /></motion.div>
+          className="absolute left-0 top-6 w-[62%] aspect-[1/.9] drop-shadow-xl"><Frame shape="peak" label="Campus front" src="/images/hero-campus.jpg" className="w-full h-full" /></motion.div>
         <motion.div initial={{ opacity: 0, scale: .8 }} animate={{ opacity: 1, scale: 1 }} transition={{ ...spring, delay: .35 }}
-          className="absolute right-0 top-0 w-[46%] aspect-square"><Frame shape="circle" label="Story time" className="w-full h-full" /></motion.div>
+          className="absolute right-0 top-0 w-[46%] aspect-square"><Frame shape="circle" label="Story time" src="/images/hero-story.jpg" className="w-full h-full" /></motion.div>
         <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} transition={{ ...spring, delay: .5 }}
-          className="absolute right-[6%] bottom-0 w-[64%] h-[34%]"><Frame shape="pill" label="Art corner" className="w-full h-full" /></motion.div>
+          className="absolute right-[6%] bottom-0 w-[64%] h-[34%]"><Frame shape="pill" label="Art corner" src="/images/hero-art.jpg" className="w-full h-full" /></motion.div>
         <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ ...spring, delay: .9 }} className="absolute left-[4%] bottom-[18%] w-20"><Peaky /></motion.div>
         <Sticker className="right-[8%] top-[42%] rotate-6">Story time</Sticker>
         <Sticker className="left-[34%] bottom-[2%] -rotate-3" color="bg-sky">Art corner</Sticker>
@@ -148,7 +150,7 @@ function Climb() {
             {stops.map((s, i) => <div key={s.g} className="w-[400px] shrink-0" style={{ marginTop: `${160 - i * 32}px` }}>
               <div className="flex items-center gap-3 mb-4"><span className="w-5 h-5 rounded-full bg-peak ring-[6px] ring-paper2" /><span className="font-kid text-lg">{s.g}</span></div>
               <article className="rounded-card bg-paper shadow-soft p-6 flex gap-5 items-start border border-line">
-                <Frame shape={(["circle", "peak", "arch", "circle", "peak"] as Shape[])[i]} label={s.g} className="w-24 h-24 shrink-0" />
+                <Frame shape={(["circle", "peak", "arch", "circle", "peak"] as Shape[])[i]} label={s.g} src={["/images/climb-nursery.jpg","/images/climb-lkg.jpg","/images/climb-ukg.jpg","/images/climb-12.jpg","/images/climb-35.jpg"][i]} className="w-24 h-24 shrink-0" />
                 <div><p className="eyebrow !text-[11px]">{s.age}</p><h3 className="font-display text-2xl font-extrabold mt-1">{s.t}</h3>
                   <p className="text-inksoft mt-2 leading-relaxed">{s.d}</p></div></article></div>)}
             <div className="w-[300px] shrink-0 flex flex-col items-center justify-start -mt-6"><Peaky className="w-28" />
@@ -194,13 +196,13 @@ function Day() {
   return (<section id="day" className="sec"><div className="wrap">
     <div className="grid grid-cols-12 gap-6 items-end mb-12">
       <div className="col-span-12 md:col-span-7"><p className="eyebrow">A day at school</p><h2 className="h2 mt-3">Busy little days, <span className="text-peak">calm</span> little routines.</h2></div>
-      <p className="col-span-12 md:col-span-4 md:col-start-9 text-inksoft text-lg">What your child might tell you at dinner. Real photos from our classrooms will fill these tiles soon.</p></div>
+      <p className="col-span-12 md:col-span-4 md:col-start-9 text-inksoft text-lg">What your child might tell you at dinner. Photos straight from our Hosur classrooms.</p></div>
     <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:auto-rows-[190px]">
       {tiles.map((x, i) => <motion.article key={x.t} initial={{ opacity: 0, y: 20, filter: "blur(6px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         viewport={{ once: true }} transition={{ duration: .5, delay: i * .06 }} whileHover={{ y: -4 }}
         className={`rounded-card p-6 md:p-7 shadow-soft hover:shadow-lift transition-shadow flex flex-col justify-between relative overflow-hidden ${x.c}`}>
         <span className={x.big ? "w-16 h-16 rounded-full bg-paper grid place-items-center" : ""}><Icon k={x.k} /></span>
-        {x.big && <div className="absolute right-6 top-6 w-[42%] aspect-square hidden md:block"><Frame shape="circle" label="Circle time" tint="opacity-90" className="w-full h-full" /></div>}
+        {x.big && <div className="absolute right-6 top-6 w-[42%] aspect-square hidden md:block"><Frame shape="circle" label="Life on campus" src="/images/day-circle.jpg" tint="opacity-90" className="w-full h-full" /></div>}
         <div><h3 className={`font-display font-extrabold ${x.big ? "text-3xl md:text-4xl" : "text-xl"}`}>{x.t}</h3>
           <p className={`mt-1 ${x.big ? "text-paper/75 text-lg" : "text-inksoft"}`}>{x.d}</p></div></motion.article>)}
     </div>
@@ -235,7 +237,7 @@ function Approach() {
 function Principal() {
   return (<section id="principal" className="sec"><div className="wrap grid grid-cols-12 gap-10 items-center">
     <div className="col-span-12 md:col-span-5 relative max-w-sm mx-auto md:mx-0 w-full">
-      <Frame shape="circle" label="Mrs. Usha" className="w-full aspect-square" />
+      <Frame shape="circle" label="Mrs. Usha, Principal" src="/images/principal-usha.jpg" pos="center 30%" className="w-full aspect-square" />
       <svg viewBox="0 0 100 100" className="absolute -right-4 -top-4 w-24 animate-[spin_30s_linear_infinite]" aria-hidden>
         <defs><path id="c" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0" /></defs>
         <text fontSize="11" fontWeight="700" letterSpacing="3" fill="#14213D"><textPath href="#c">PRINCIPAL · MOUNT LITERA ZEE · HOSUR ·</textPath></text></svg>
@@ -243,13 +245,13 @@ function Principal() {
     <div className="col-span-12 md:col-span-7">
       <p className="eyebrow">A note from our Principal</p>
       <div data-placeholder className="mt-6 rounded-[20px] p-1">
-        <span className="inline-block mb-4 font-kid text-xs bg-sunshine border-2 border-ink rounded-full px-3 py-1">Draft · awaiting Mrs. Usha's approval</span>
+        <span className="inline-block mb-4 font-kid text-xs bg-sunshine border-2 border-ink rounded-full px-3 py-1">Message from Mrs. Usha · draft</span>
         <blockquote className="font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.15] font-bold tracking-tight">
           {/* PLACEHOLDER: user will supply Mrs. Usha's photo + approved quote */}
           “The early years are the foundation of a whole life. Here, every child is known by name, encouraged to ask questions, and helped to grow with confidence and kindness.”</blockquote></div>
       <div className="mt-8 flex flex-wrap items-end gap-x-8 gap-y-4"><div><p className="font-hand text-4xl">Mrs. Usha</p><p className="text-inksoft font-semibold">Principal, Mount Litera Zee School, Hosur</p></div>
         <a href="#admissions" className="rounded-full border-2 border-ink px-5 py-2.5 font-bold hover:bg-ink hover:text-paper transition-colors">Meet us on a campus visit →</a></div>
-      <p className="mt-4 text-xs text-inksoft" data-placeholder>Photo and final message to be shared by the school.</p></div>
+      <p className="mt-4 text-xs text-inksoft" data-placeholder>Final message to be confirmed by the school.</p></div>
   </div></section>);
 }
 
@@ -339,7 +341,8 @@ function Footer() {
       <div className="col-span-1 md:col-span-3"><p className={h}>Find us</p><p className="mt-4 leading-relaxed text-paper/80">Opposite Micro Labs<br />Hosur, Tamil Nadu</p></div>
       <div className="col-span-2 md:col-span-3"><p className={h}>Write to us</p>
         <a href={`mailto:${EMAIL}`} className="mt-4 block break-all underline decoration-sun underline-offset-4">{EMAIL}</a>
-        <p className="mt-3 text-paper/50 text-sm" data-placeholder>Phone & WhatsApp — coming soon</p></div></div>
+        <a href="tel:+919092312121" className="mt-3 block underline decoration-sun underline-offset-4">+91 90923 12121</a>
+        <a href="https://wa.me/919092312121" target="_blank" rel="noopener" className="mt-1 block text-paper/70 text-sm underline underline-offset-4">WhatsApp us</a></div></div>
     <div className="border-t border-paper/15"><div className="wrap py-6 text-sm text-paper/50 flex flex-col sm:flex-row sm:justify-between gap-2">
       <span>© {new Date().getFullYear()} Mount Litera Zee School, Hosur</span><span>Part of the Mount Litera Zee School network</span></div></div>
   </footer>);
