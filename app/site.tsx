@@ -136,16 +136,16 @@ function Climb() {
     {/* desktop: pinned horizontal climb */}
     <div ref={ref} className="hidden lg:block h-[320vh]">
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-        <div className="wrap w-full flex items-end justify-between mb-10">
+        <div className="wrap w-full flex items-end justify-between mb-6">
           <div><p className="eyebrow">The Climb</p><h2 className="h2 mt-3 max-w-xl">Nursery to Class 5, one gentle step at a time.</h2></div>
           <p className="font-hand text-2xl text-inksoft rotate-2 mb-2">keep scrolling to climb ↗</p></div>
         <motion.div style={{ x }} className="relative pl-[max(20px,calc((100vw-1200px)/2))] w-[220vw]">
-          <svg viewBox="0 0 2200 420" className="absolute inset-x-0 top-0 w-[2200px] h-[420px]" aria-hidden>
-            <path d="M0 400 C 300 400, 300 330, 460 330 S 760 250, 900 250 S 1200 170, 1340 170 S 1650 90, 1780 90 S 2050 20, 2200 20" stroke="#E6DCCB" strokeWidth="6" fill="none" strokeDasharray="2 14" strokeLinecap="round" />
-            <motion.path style={{ pathLength: draw }} d="M0 400 C 300 400, 300 330, 460 330 S 760 250, 900 250 S 1200 170, 1340 170 S 1650 90, 1780 90 S 2050 20, 2200 20" stroke="#1F4FD8" strokeWidth="6" fill="none" strokeLinecap="round" />
+          <svg viewBox="0 0 2200 420" className="absolute inset-x-0 top-0 w-[2200px] h-[420px]" preserveAspectRatio="none" aria-hidden>
+            <path d="M0 170 C 220 170, 260 138, 442 138 S 700 106, 874 106 S 1130 74, 1306 74 S 1560 42, 1738 42 S 2000 12, 2200 12" stroke="#E6DCCB" strokeWidth="6" fill="none" strokeDasharray="2 14" strokeLinecap="round" />
+            <motion.path style={{ pathLength: draw }} d="M0 170 C 220 170, 260 138, 442 138 S 700 106, 874 106 S 1130 74, 1306 74 S 1560 42, 1738 42 S 2000 12, 2200 12" stroke="#1F4FD8" strokeWidth="6" fill="none" strokeLinecap="round" />
           </svg>
-          <div className="relative flex gap-8 h-[480px]">
-            {stops.map((s, i) => <div key={s.g} className="w-[400px] shrink-0" style={{ marginTop: `${280 - i * 70}px` }}>
+          <div className="relative flex gap-8 h-[440px]">
+            {stops.map((s, i) => <div key={s.g} className="w-[400px] shrink-0" style={{ marginTop: `${160 - i * 32}px` }}>
               <div className="flex items-center gap-3 mb-4"><span className="w-5 h-5 rounded-full bg-peak ring-[6px] ring-paper2" /><span className="font-kid text-lg">{s.g}</span></div>
               <article className="rounded-card bg-paper shadow-soft p-6 flex gap-5 items-start border border-line">
                 <Frame shape={(["circle", "peak", "arch", "circle", "peak"] as Shape[])[i]} label={s.g} className="w-24 h-24 shrink-0" />
@@ -220,6 +220,14 @@ function Approach() {
       {a.map(([t, d], i) => <Fade key={t} delay={i * .08}><div className="border-t-2 border-ink pt-6">
         <span className="font-display font-extrabold text-7xl outline-num">0{i + 1}</span>
         <h3 className="font-display text-2xl font-extrabold mt-4">{t}</h3><p className="text-inksoft mt-2 leading-relaxed">{d}</p></div></Fade>)}</div>
+    {/* Network framing — adapted from mountlitera.com (about-us / curriculum). Facts only, no Hosur-specific claims. */}
+    <div className="col-span-12 mt-8 rounded-card bg-paper border border-line p-6 md:p-10 grid md:grid-cols-12 gap-6 items-center">
+      <div className="md:col-span-5"><p className="eyebrow">Part of the Mount Litera Zee network</p>
+        <h3 className="font-display text-2xl md:text-3xl font-extrabold mt-2">“Shaping global minds on Indian soil.”</h3>
+        <p className="text-inksoft mt-2 text-sm">The vision of the Mount Litera Zee School network, by Zee Learn.</p></div>
+      <ul className="md:col-span-7 grid sm:grid-cols-2 gap-5">
+        <li><h4 className="font-kid text-lg">Every child is unique</h4><p className="text-inksoft mt-1">The network’s Unique Learner Profile (ULP) idea: notice how each child learns best, and teach to that.</p></li>
+        <li><h4 className="font-kid text-lg">Whole-child growth</h4><p className="text-inksoft mt-1">In the spirit of Litera Nova — thinking, feeling, moving and making, not just marks.</p></li></ul></div>
   </div></section>);
 }
 
@@ -237,8 +245,11 @@ function Principal() {
       <div data-placeholder className="mt-6 rounded-[20px] p-1">
         <span className="inline-block mb-4 font-kid text-xs bg-sunshine border-2 border-ink rounded-full px-3 py-1">Draft · awaiting Mrs. Usha's approval</span>
         <blockquote className="font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.15] font-bold tracking-tight">
+          {/* PLACEHOLDER: user will supply Mrs. Usha's photo + approved quote */}
           “The early years are the foundation of a whole life. Here, every child is known by name, encouraged to ask questions, and helped to grow with confidence and kindness.”</blockquote></div>
-      <p className="font-hand text-4xl mt-8">Mrs. Usha</p><p className="text-inksoft font-semibold">Principal, Mount Litera Zee School, Hosur</p></div>
+      <div className="mt-8 flex flex-wrap items-end gap-x-8 gap-y-4"><div><p className="font-hand text-4xl">Mrs. Usha</p><p className="text-inksoft font-semibold">Principal, Mount Litera Zee School, Hosur</p></div>
+        <a href="#admissions" className="rounded-full border-2 border-ink px-5 py-2.5 font-bold hover:bg-ink hover:text-paper transition-colors">Meet us on a campus visit →</a></div>
+      <p className="mt-4 text-xs text-inksoft" data-placeholder>Photo and final message to be shared by the school.</p></div>
   </div></section>);
 }
 
@@ -286,6 +297,7 @@ function Admissions() {
 /* ---------- FAQ ---------- */
 const faqs = [
   ["Which classes does the school have?", "Nursery to Class 5. We're a primary school focused entirely on the early years."],
+  ["Is this part of Mount Litera Zee School?", "Yes — our campus is part of the Mount Litera Zee School network by Zee Learn. Early-years learning here stays gentle and play-based, shaped for little ones."],
   ["Where exactly is the school?", "Opposite Micro Labs, Hosur. Email us and we'll share a map pin and the best way to reach the gate."],
   ["How do we start admission?", "Send an enquiry, then book a campus visit. We'll walk you through age criteria and documents in person."],
   ["Are fees listed online?", "No — fee details are shared during your campus visit, so we can answer every question properly."],
@@ -308,21 +320,28 @@ function FAQ() {
 
 /* ---------- Footer ---------- */
 function Footer() {
+  const nav = [["The Climb", "#climb"], ["A day here", "#day"], ["Principal", "#principal"], ["Admissions", "#admissions"], ["FAQ", "#faq"]];
+  const h = "eyebrow !text-paper/50";
   return (<footer className="bg-ink text-paper">
-    <div className="bg-sun"><div className="wrap py-14 md:py-20 grid grid-cols-12 gap-6 items-center">
+    <div className="bg-sun"><div className="wrap py-16 md:py-20 grid grid-cols-12 gap-6 items-center">
       <h2 className="h2 col-span-12 md:col-span-8 text-white">Come see where the climb begins.</h2>
       <div className="col-span-12 md:col-span-4 md:text-right"><a href={mail("Campus visit request — Mount Litera Zee School, Hosur", "Hello,\n\nWe'd like to visit the campus.\n\nChild's age / class:\nPreferred day:\n\nThank you.")}
         className="inline-block rounded-full bg-ink text-paper font-bold px-7 py-4 hover:-translate-y-0.5 transition-transform">Book a campus visit →</a></div></div></div>
-    <div className="wrap py-14 grid grid-cols-12 gap-8">
-      <div className="col-span-12 md:col-span-5"><div className="flex items-center gap-3"><svg viewBox="0 0 48 40" className="w-10"><path d="M2 38 L18 10 L26 22 L32 14 L46 38 Z" fill="#FBF7F0" /><circle cx="38" cy="8" r="5" fill="#FF6B2C" /></svg>
-        <span className="font-display text-xl font-extrabold">Mount Litera Zee School, Hosur</span></div>
-        <p className="mt-4 text-paper/70 max-w-sm">Nursery to Class 5. Where little minds grow big.</p></div>
-      <div className="col-span-6 md:col-span-3"><p className="eyebrow !text-paper/50">Find us</p><p className="mt-3">Opposite Micro Labs<br />Hosur, Tamil Nadu</p></div>
-      <div className="col-span-6 md:col-span-4"><p className="eyebrow !text-paper/50">Write to us</p>
-        <a href={`mailto:${EMAIL}`} className="mt-3 block break-all underline decoration-sun underline-offset-4">{EMAIL}</a>
-        <p className="mt-2 text-paper/50 text-sm" data-placeholder>Phone & WhatsApp — coming soon</p></div></div>
-    <div className="wrap py-6 border-t border-paper/15 text-sm text-paper/50 flex flex-wrap justify-between gap-2">
-      <span>© {new Date().getFullYear()} Mount Litera Zee School, Hosur</span><span>Part of the Mount Litera Zee School network</span></div>
+    <div className="wrap pt-16 pb-12 md:pt-20 md:pb-16 grid grid-cols-2 md:grid-cols-12 gap-x-8 gap-y-12">
+      <div className="col-span-2 md:col-span-4">
+        {/* Logo slot: SVG peak until the real logo is supplied */}
+        <div className="flex items-center gap-3"><svg viewBox="0 0 48 40" className="w-10 shrink-0"><path d="M2 38 L18 10 L26 22 L32 14 L46 38 Z" fill="#FBF7F0" /><circle cx="38" cy="8" r="5" fill="#FF6B2C" /></svg>
+          <span className="font-display text-xl font-extrabold leading-tight">Mount Litera Zee School<br />Hosur</span></div>
+        <p className="mt-5 text-paper/70 max-w-xs leading-relaxed">Nursery to Class 5. Where little minds grow big.</p>
+        <p className="mt-5 text-sm text-paper/50 max-w-xs leading-relaxed">A campus of the <a href="https://www.mountlitera.com" target="_blank" rel="noopener" className="underline decoration-paper/30 underline-offset-4 hover:text-paper">Mount Litera Zee School</a> network by Zee Learn.</p></div>
+      <nav className="col-span-1 md:col-span-2" aria-label="Footer"><p className={h}>Explore</p>
+        <ul className="mt-4 space-y-3">{nav.map(([t, u]) => <li key={u}><a href={u} className="text-paper/80 hover:text-sun transition-colors">{t}</a></li>)}</ul></nav>
+      <div className="col-span-1 md:col-span-3"><p className={h}>Find us</p><p className="mt-4 leading-relaxed text-paper/80">Opposite Micro Labs<br />Hosur, Tamil Nadu</p></div>
+      <div className="col-span-2 md:col-span-3"><p className={h}>Write to us</p>
+        <a href={`mailto:${EMAIL}`} className="mt-4 block break-all underline decoration-sun underline-offset-4">{EMAIL}</a>
+        <p className="mt-3 text-paper/50 text-sm" data-placeholder>Phone & WhatsApp — coming soon</p></div></div>
+    <div className="border-t border-paper/15"><div className="wrap py-6 text-sm text-paper/50 flex flex-col sm:flex-row sm:justify-between gap-2">
+      <span>© {new Date().getFullYear()} Mount Litera Zee School, Hosur</span><span>Part of the Mount Litera Zee School network</span></div></div>
   </footer>);
 }
 
