@@ -241,7 +241,7 @@ function Principal() {
       <svg viewBox="0 0 100 100" className="absolute -right-4 -top-4 w-24 animate-[spin_30s_linear_infinite]" aria-hidden>
         <defs><path id="c" d="M50 50 m-38 0 a38 38 0 1 1 76 0 a38 38 0 1 1 -76 0" /></defs>
         <text fontSize="11" fontWeight="700" letterSpacing="3" fill="#14213D"><textPath href="#c">PRINCIPAL · MOUNT LITERA ZEE · HOSUR ·</textPath></text></svg>
-      <PeakMark className="absolute -bottom-2 -left-2 w-16" /></div>
+      <img src="/images/logo-mlzs-badge.png" alt="Mount Litera Zee School logo" className="absolute -bottom-2 -left-2 w-16 h-16 object-contain rounded-full bg-white p-1 shadow-md" /></div>
     <div className="col-span-12 md:col-span-7">
       <p className="eyebrow">A note from our Principal</p>
       <div data-placeholder className="mt-6 rounded-[20px] p-1">
