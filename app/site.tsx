@@ -324,26 +324,26 @@ function FAQ() {
 function Footer() {
   const nav = [["The Climb", "#climb"], ["A day here", "#day"], ["Principal", "#principal"], ["Admissions", "#admissions"], ["FAQ", "#faq"]];
   const h = "eyebrow !text-paper/50";
+  const fw = "wrap !px-6 sm:!px-8";
   return (<footer className="bg-ink text-paper">
-    <div className="bg-sun"><div className="wrap py-16 md:py-20 grid grid-cols-12 gap-6 items-center">
-      <h2 className="h2 col-span-12 md:col-span-8 text-white">Come see where the climb begins.</h2>
+    <div className="bg-sun"><div className={`${fw} py-12 sm:py-16 md:py-20 grid grid-cols-12 gap-6 md:gap-8 items-center`}>
+      <h2 className="h2 col-span-12 md:col-span-8 text-white text-balance">Come see where the climb begins.</h2>
       <div className="col-span-12 md:col-span-4 md:text-right"><a href={mail("Campus visit request — Mount Litera Zee School, Hosur", "Hello,\n\nWe'd like to visit the campus.\n\nChild's age / class:\nPreferred day:\n\nThank you.")}
-        className="inline-block rounded-full bg-ink text-paper font-bold px-7 py-4 hover:-translate-y-0.5 transition-transform">Book a campus visit →</a></div></div></div>
-    <div className="wrap pt-16 pb-12 md:pt-20 md:pb-16 grid grid-cols-2 md:grid-cols-12 gap-x-8 gap-y-12">
-      <div className="col-span-2 md:col-span-4">
-        {/* Logo slot: SVG peak until the real logo is supplied */}
-        <div className="flex items-center gap-3"><img src="/images/logo-mlzs-badge.png" alt="Mount Litera Zee School" className="w-11 h-11 shrink-0 object-contain" />
+        className="inline-flex w-full sm:w-auto justify-center items-center rounded-full bg-ink text-paper font-bold px-7 py-4 min-h-[52px] hover:-translate-y-0.5 transition-transform">Book a campus visit →</a></div></div></div>
+    <div className={`${fw} pt-14 pb-12 md:pt-20 md:pb-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-x-10 gap-y-10 md:gap-y-12`}>
+      <div className="sm:col-span-2 md:col-span-4 pb-8 sm:pb-0 border-b border-paper/10 sm:border-0">
+        <div className="flex items-center gap-3"><img src="/images/logo-mlzs-badge.png" alt="Mount Litera Zee School" className="w-12 h-12 shrink-0 object-contain" />
           <span className="font-display text-xl font-extrabold leading-tight">Mount Litera Zee School<br />Hosur</span></div>
-        <p className="mt-5 text-paper/70 max-w-xs leading-relaxed">Nursery to Class 5. Where little minds grow big.</p>
-        <p className="mt-5 text-sm text-paper/50 max-w-xs leading-relaxed">A campus of the <a href="https://www.mountlitera.com" target="_blank" rel="noopener" className="underline decoration-paper/30 underline-offset-4 hover:text-paper">Mount Litera Zee School</a> network by Zee Learn.</p></div>
-      <nav className="col-span-1 md:col-span-2" aria-label="Footer"><p className={h}>Explore</p>
-        <ul className="mt-4 space-y-3">{nav.map(([t, u]) => <li key={u}><a href={u} className="text-paper/80 hover:text-sun transition-colors">{t}</a></li>)}</ul></nav>
-      <div className="col-span-1 md:col-span-3"><p className={h}>Find us</p><p className="mt-4 leading-relaxed text-paper/80">Opposite Micro Labs<br />Hosur, Tamil Nadu</p></div>
-      <div className="col-span-2 md:col-span-3"><p className={h}>Write to us</p>
-        <a href={`mailto:${EMAIL}`} className="mt-4 block break-all underline decoration-sun underline-offset-4">{EMAIL}</a>
+        <p className="mt-5 text-paper/70 max-w-sm leading-relaxed">Nursery to Class 5. Where little minds grow big.</p>
+        <p className="mt-4 text-sm text-paper/50 max-w-sm leading-relaxed">A campus of the <a href="https://www.mountlitera.com" target="_blank" rel="noopener" className="underline decoration-paper/30 underline-offset-4 hover:text-paper">Mount Litera Zee School</a> network by Zee Learn.</p></div>
+      <nav className="md:col-span-2" aria-label="Footer"><p className={h}>Explore</p>
+        <ul className="mt-4 grid grid-cols-2 sm:grid-cols-1 gap-x-6 gap-y-3">{nav.map(([t, u]) => <li key={u}><a href={u} className="inline-block py-0.5 text-paper/80 hover:text-sun transition-colors">{t}</a></li>)}</ul></nav>
+      <div className="md:col-span-3"><p className={h}>Find us</p><p className="mt-4 leading-relaxed text-paper/80">Opposite Micro Labs<br />Hosur, Tamil Nadu</p></div>
+      <div className="sm:col-span-2 md:col-span-3 min-w-0"><p className={h}>Write to us</p>
+        <a href={`mailto:${EMAIL}`} className="mt-4 block break-words [overflow-wrap:anywhere] underline decoration-sun underline-offset-4">{EMAIL}</a>
         <a href="tel:+919092312121" className="mt-3 block underline decoration-sun underline-offset-4">+91 90923 12121</a>
-        <a href="https://wa.me/919092312121" target="_blank" rel="noopener" className="mt-1 block text-paper/70 text-sm underline underline-offset-4">WhatsApp us</a></div></div>
-    <div className="border-t border-paper/15"><div className="wrap py-6 text-sm text-paper/50 flex flex-col sm:flex-row sm:justify-between gap-2">
+        <a href="https://wa.me/919092312121" target="_blank" rel="noopener" className="mt-3 inline-block text-paper/70 text-sm underline underline-offset-4">WhatsApp us</a></div></div>
+    <div className="border-t border-paper/15"><div className={`${fw} py-7 sm:py-6 text-sm text-paper/50 flex flex-col sm:flex-row sm:justify-between gap-2`}>
       <span>© {new Date().getFullYear()} Mount Litera Zee School, Hosur</span><span>Part of the Mount Litera Zee School network</span></div></div>
   </footer>);
 }
