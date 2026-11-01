@@ -159,7 +159,7 @@ function Climb() {
     {/* mobile: vertical stepper */}
     <div className="lg:hidden sec wrap">
       <p className="eyebrow">The Climb</p><h2 className="h2 mt-3">Nursery to Class 5, one gentle step at a time.</h2>
-      <ol className="mt-12 relative border-l-[3px] border-dashed border-line ml-3">
+      <ol className="mt-12 relative border-l-[3px] border-dashed border-line ml-[13px] mr-0">
         {[...stops].map((s, i) => <li key={s.g} className="pl-8 pb-10 relative">
           <span className="absolute -left-[13px] top-1 w-6 h-6 rounded-full bg-peak ring-4 ring-paper2" />
           <Fade delay={i * .05}><span className="font-kid text-lg">{s.g}</span><span className="eyebrow !text-[11px] ml-3">{s.age}</span>
@@ -235,7 +235,7 @@ function Approach() {
 
 /* ---------- Principal ---------- */
 function Principal() {
-  return (<section id="principal" className="sec"><div className="wrap grid grid-cols-12 gap-10 items-center">
+  return (<section id="principal" className="sec"><div className="wrap grid grid-cols-12 gap-y-10 md:gap-10 items-center">
     <div className="col-span-12 md:col-span-5 relative max-w-sm mx-auto md:mx-0 w-full">
       <Frame shape="circle" label="Mrs. Usha, Principal" src="/images/principal-usha.jpg" pos="center 30%" className="w-full aspect-square" />
       <svg viewBox="0 0 100 100" className="absolute -right-4 -top-4 w-24 animate-[spin_30s_linear_infinite]" aria-hidden>
@@ -244,7 +244,7 @@ function Principal() {
       <img src="/images/logo-mlzs-badge.png" alt="Mount Litera Zee School logo" className="absolute -bottom-2 -left-2 w-16 h-16 object-contain rounded-full bg-white p-1 shadow-md" /></div>
     <div className="col-span-12 md:col-span-7">
       <p className="eyebrow">A note from our Principal</p>
-      <div data-placeholder className="mt-6 rounded-[20px] p-1">
+      <div data-placeholder className="mt-6 rounded-[20px] p-3 md:p-1">
         <span className="inline-block mb-4 font-kid text-xs bg-sunshine border-2 border-ink rounded-full px-3 py-1">Message from Mrs. Usha · draft</span>
         <blockquote className="font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.15] font-bold tracking-tight">
           {/* PLACEHOLDER: user will supply Mrs. Usha's photo + approved quote */}
